@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "deno",
+      "command": "run",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "args": [
+        "--quiet",
+        "--allow-read",
+        "--import-map=${workspaceFolder}/import_map.json",
+        "${file}"
+      ],
+      "problemMatcher": [
+        "$deno"
+      ],
+      "label": "deno: run",
+      "isBackground": false
+    },
+    {
+      "type": "deno",
+      "command": "test",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "args": [
+        "--quiet",
+        "--allow-read",
+        "--import-map=${workspaceFolder}/import_map.json",
+        "${file}"
+      ],
+      "problemMatcher": [
+        "$deno"
+      ],
+      "label": "deno: test"
+    }
+  ]
+}

@@ -1,8 +1,4 @@
-const text = await Deno.readTextFile("./input.txt");
-
-const depths = text
-  .split('\n')
-  .map(l => parseInt(l));
+import { getInputNumbers } from "/utils/index.ts";
 
 function countIncreases(arr: number[]) {
   let total = 0;
@@ -10,11 +6,12 @@ function countIncreases(arr: number[]) {
     const prev = arr[i - 1];
     const curr = arr[i];
 
-    if (curr > prev)
+    if (curr > prev) {
       total += 1;
+    }
   }
 
   return total;
 }
 
-console.log(countIncreases(depths))
+console.log(countIncreases(getInputNumbers()));
