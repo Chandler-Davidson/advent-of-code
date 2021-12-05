@@ -31,3 +31,12 @@ export function count<T>(
 export function sum(arr: number[]) {
   return arr.reduce((acc, el) => acc + el, 0);
 }
+
+export function chunk<T>(arr: T[], size: number): T[][] {
+  return arr.reduce((acc, el, i) => {
+    const chunkIndex = Math.floor(i / size);
+    acc[chunkIndex] = ([] as T[]).concat(acc[chunkIndex] || [], el);
+
+    return acc;
+  }, [] as T[][]);
+}

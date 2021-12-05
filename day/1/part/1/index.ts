@@ -1,4 +1,4 @@
-import { getInputNumbers } from "/utils/index.ts";
+import { getInputNumbers } from "utils";
 
 function countIncreases(arr: number[]) {
   let total = 0;

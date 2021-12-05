@@ -1,4 +1,4 @@
-import { getInputLines } from '/utils/index.ts';
+import { getInputLines } from 'utils';
 
 type orientation = 'forward' | 'down' | 'up';
 type direction = {

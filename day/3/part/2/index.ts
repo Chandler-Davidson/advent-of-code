@@ -1,4 +1,4 @@
-import { getInputLines } from "/utils/utils.ts";
+import { getInputLines } from "utils";
 
 type bit = "0" | "1";
 
