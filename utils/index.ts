@@ -13,6 +13,10 @@ export function getInputNumbers(): number[] {
   return getInputLines().map((l) => parseInt(l));
 }
 
+export function getInputLinesMap<T>(parser: (line: string) => T): T[] {
+  return getInputLines().map(parser);
+}
+
 export function count<T>(
   arr: Iterable<T>,
   predicate: (item: T) => boolean,
@@ -39,4 +43,8 @@ export function chunk<T>(arr: T[], size: number): T[][] {
 
     return acc;
   }, [] as T[][]);
+}
+
+export function create2DArray<T>(size: number, value: T): T[][] {
+  return Array(size + 1).fill(null).map(() => Array(size + 1).fill(value));
 }
