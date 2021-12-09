@@ -100,3 +100,7 @@ export function intersection<Y>(a: Y[], b: Y[]): Y[] {
 export function complement<Y>(a: Y[], b: Y[]): Y[] {
   return [...new Set(a.filter((x) => !b.includes(x)))];
 }
+
+export function sort<Y>(arr: Y[], comparison: (a: Y, b: Y) => number): Y[] {
+  return [...arr].sort(comparison);
+}
