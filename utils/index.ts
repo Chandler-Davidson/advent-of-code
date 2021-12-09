@@ -38,8 +38,9 @@ export function sum(arr: number[]) {
 
 export function average(arr: number[]): number {
   const { length } = arr;
-  if (length == 0)
-    throw 'Cannot average array of length 0';
+  if (length == 0) {
+    throw "Cannot average array of length 0";
+  }
 
   return sum(arr) / length;
 }
@@ -53,8 +54,9 @@ export function median(values: number[]) {
 
   const half = Math.floor(values.length / 2);
 
-  if (values.length % 2)
+  if (values.length % 2) {
     return values[half];
+  }
 
   return (values[half - 1] + values[half]) / 2.0;
 }
@@ -76,12 +78,25 @@ export function memo<Y>(func: (input: string) => Y): (input: string) => Y {
   const cache = {} as { [key: string]: Y };
 
   return function (input: string): Y {
-    if (input in cache)
+    if (input in cache) {
       return cache[input];
+    }
 
     const value = func(input);
     cache[input] = value;
 
     return value;
-  }
+  };
+}
+
+export function alphabetSort(str: string): string {
+  return [...str].sort((a, b) => a.localeCompare(b)).join("");
+}
+
+export function intersection<Y>(a: Y[], b: Y[]): Y[] {
+  return [...new Set(a.filter((x) => b.includes(x)))];
+}
+
+export function complement<Y>(a: Y[], b: Y[]): Y[] {
+  return [...new Set(a.filter((x) => !b.includes(x)))];
 }
