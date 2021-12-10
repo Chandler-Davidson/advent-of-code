@@ -20,4 +20,4 @@ for (let i = 1; i <= 80; i++) {
   fishCount[8] = zeros;
 }
 
-console.log(`day: ${i}, fish: ${sum(fishCount)}`);
+console.log(`fish: ${sum(fishCount)}`);
