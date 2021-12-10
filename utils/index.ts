@@ -108,3 +108,7 @@ export function sort<Y>(arr: Y[], comparison: (a: Y, b: Y) => number): Y[] {
 export function invertObject<X extends string | number | symbol, Y>(object: Record<X, Y>) {
   return Object.fromEntries(Object.entries(object).map(([key, value]) => [value, key]));
 }
+
+export function range(n: number) {
+  return Array.from({ length: n }, (_, i) => i);
+}
