@@ -104,3 +104,7 @@ export function complement<Y>(a: Y[], b: Y[]): Y[] {
 export function sort<Y>(arr: Y[], comparison: (a: Y, b: Y) => number): Y[] {
   return [...arr].sort(comparison);
 }
+
+export function invertObject<X extends string | number | symbol, Y>(object: Record<X, Y>) {
+  return Object.fromEntries(Object.entries(object).map(([key, value]) => [value, key]));
+}
