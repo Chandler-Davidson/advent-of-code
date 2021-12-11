@@ -9,6 +9,10 @@ export function getInputLines(): string[] {
   return getInput().split(newLineRegex);
 }
 
+export function getInputGrid(): string[][] {
+  return getInputLines().map((line) => line.split(""));
+}
+
 export function getInputNumbers(): number[] {
   return getInputLines().map((l) => parseInt(l));
 }
