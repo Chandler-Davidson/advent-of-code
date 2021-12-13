@@ -74,8 +74,12 @@ export function chunk<T>(arr: T[], size: number): T[][] {
   }, [] as T[][]);
 }
 
-export function create2DArray<T>(size: number, value: T): T[][] {
-  return Array(size + 1).fill(null).map(() => Array(size + 1).fill(value));
+export function create2DArray<T>(size: number | [number, number], value: T): T[][] {
+  if (typeof (size) === 'number')
+    return Array(size + 1).fill(null).map(() => Array(size + 1).fill(value));
+  
+  const [width, height] = size;
+  return Array(height + 1).fill(null).map(() => Array(width + 1).fill(value));
 }
 
 export function memo<Y>(func: (input: string) => Y): (input: string) => Y {
