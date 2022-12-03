@@ -31,17 +31,37 @@
  */
 
 export const sum = (nums: number[] | string[]) => {
-  if (nums.length === 0)
-    return 0;
-  
-  if (typeof nums[0] === 'string') {
+  if (nums.length === 0) return 0;
+
+  if (typeof nums[0] === "string") {
     // @ts-ignore
     return nums.reduce((acc, n) => acc + parseInt(n as string), 0);
   } else {
     return (nums as number[]).reduce((acc, n) => acc + n, 0);
   }
-  
-  
-}
+};
 
 export const sortDescending = (nums: number[]) => nums.sort((a, b) => b - a);
+
+export const intersection = <T>(...collections: Set<T>[] | T[]): T[] => {
+  let sets: Set<T>[];
+
+  if (Array.isArray(collections)) {
+    sets = collections.map((arr) => new Set<T>(arr));
+  } else {
+    collections = sets;
+  }
+
+  return [...sets.reduce((a, b) => new Set([...a].filter((x) => b.has(x))))];
+};
+
+export const groupBy = <T>(array: T[], size: number): T[][] =>
+  array.reduce((acc: T[][], el: T, i: number) => {
+    if (i % size === 0) {
+      acc.push([el]);
+    } else {
+      acc[acc.length - 1].push(el);
+    }
+
+    return acc;
+  }, []);
