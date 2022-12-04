@@ -65,3 +65,14 @@ export const groupBy = <T>(array: T[], size: number): T[][] =>
 
     return acc;
   }, []);
+
+export const count = <T>(arr: T[], predicate: (el: T) => boolean): number => {
+  let count = 0;
+  for (const el of arr) {
+    if (predicate(el)) {
+      count += 1;
+    }
+  }
+
+  return count;
+};
