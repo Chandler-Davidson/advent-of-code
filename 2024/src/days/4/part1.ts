@@ -67,6 +67,11 @@ function getLetter(
   }
 }
 
+// 1. Find the X
+// 2. Find the direction by finding the next letter (M)
+// 3. Check the remaining letters in the same direction
+// 4. If all letters are found, increment the count
+
 function main(input: string): number {
   let count = 0;
   const matrix = input.split("\r\n").map((row) => row.split(""));
