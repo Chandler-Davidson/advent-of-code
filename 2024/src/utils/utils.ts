@@ -9,3 +9,7 @@ export function getInput(day: number): Promise<string> {
 export function sum(numbers: number[]): number {
   return numbers.reduce((sum, number) => sum + number, 0);
 }
+
+export function isEven(number: number): boolean {
+  return number % 2 === 0;
+} 
