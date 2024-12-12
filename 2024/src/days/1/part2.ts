@@ -20,11 +20,11 @@ function getLists(input: string): number[][] {
   return [left, right];
 }
 
-function countOccurrences(list: number[]): Record<number, number> {
+function countOccurrences(list: number[]): Map<number, number> {
   return list.reduce((acc, number) => {
     acc[number] = (acc[number] || 0) + 1;
     return acc;
-  }, {} as Record<number, number>);
+  }, {} as Map<number, number>);
 }
 
 function main(input: string): number {

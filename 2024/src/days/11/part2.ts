@@ -1,36 +1,41 @@
-import { getExample, getInput, isEven } from "#utils";
+import { getExample, getInput, isEven, sum } from "#utils";
 import { assertEquals } from "jsr:@std/assert";
 
 // 0: Replaced by 1
 // even # of digits: split in half, remove leading 0s
 // else: * 2024
 
-function blink(stones: string[]): string[] {
-  for (let i = 0; i < stones.length; i++) {
-    const stone = Number(stones[i]).toString();
+// Instead of individual instances, count occurrences. Order doesn't matter
+function blink(stones: Map<string, number>): Map<string, number> {
+  const newStones = new Map<string, number>();
 
-    if (stone === "0") {
-      stones[i] = "1";
-    } else if (isEven(stone.length)) {
-      const left = stone.slice(0, stone.length / 2);
-      const right = stone.slice(stone.length / 2);
-      stones.splice(i, 1, left, right);
-      i += 1;
+  for (const [carving, quantity] of stones.entries()) {
+    if (carving === "0") {
+      newStones.set("1", (newStones.get("1") ?? 0) + quantity);
+    } else if (isEven(carving.length)) {
+      const middle = carving.length / 2;
+      const [left, right] = [carving.slice(0, middle), carving.slice(middle)]
+        .map((c) => Number(c).toString());
+
+      newStones.set(left, (newStones.get(left) ?? 0) + quantity);
+      newStones.set(right, (newStones.get(right) ?? 0) + quantity);
     } else {
-      stones[i] = (parseInt(stone) * 2024).toString();
+      const newCarving = (Number(carving) * 2024).toString();
+      newStones.set(newCarving, (newStones.get(newCarving) ?? 0) + quantity);
     }
   }
 
-  return stones;
+  return newStones;
 }
 
 function main(input: string, blinks: number): number {
-  let stones = input.split(" ");
+  let stones = new Map(input.split(" ").map((stone) => [stone, 1]));
+
   for (let i = 0; i < blinks; i++) {
     stones = blink(stones);
   }
 
-  return stones.length;
+  return sum([...stones.values().map(Number)]);
 }
 
 Deno.test("example1", async () => {
@@ -52,7 +57,7 @@ Deno.test("example2.1", async () => {
 });
 
 Deno.test("solve", async () => {
-  // Oof ~5.4s  
+  // 43.494299999999996 ms
   const start = performance.now();
   const input = await getInput(11);
   const result = main(input, 75);
